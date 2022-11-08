@@ -1,0 +1,34 @@
+create database 1BM21CS100;
+
+use 1BM21CS100
+create table person(
+driver_id varchar(30) primary key,
+name varchar(30),
+address varchar(30)
+);
+create table car(
+reg_num varchar(30) primary key,
+model varchar(30),
+year int);
+create table owns(
+driver_id varchar(30),
+reg_num varchar(30),
+primary key(driver_id,reg_num),
+foreign key(driver_id) references person(driver_id),
+foreign key(reg_num) references car(reg_num)
+);
+create table accident(
+report_num varchar(30) primary key,
+accident_date date,
+location varchar(30)
+);
+create table participated(
+driver_id varchar(30),
+reg_num varchar(30),
+report_num varchar(30),
+primary key(driver_id,reg_num,report_num),
+foreign key(driver_id) references person(driver_id),
+foreign key(reg_num) references car(reg_num),
+foreign key(report_num) references accident(report_num),
+damage_amount int
+);
